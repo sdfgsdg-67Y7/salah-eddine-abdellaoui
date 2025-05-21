@@ -1,0 +1,129 @@
+# salah-eddine-abdellaoui  
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>اختبارات المواد الدراسية</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background-color: #f8f8f8;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #333;
+    }
+    .question-box {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+    select, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px 0;
+      width: 100%;
+      border-radius: 6px;
+    }
+    .option {
+      margin: 8px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>اختبارات المواد الدراسية</h1>
+
+  <label for="subject">اختر المادة:</label>
+  <select id="subject" onchange="showQuestions()">
+    <option value="">-- اختر --</option>
+    <option value="english">الانجليزية</option>
+    <option value="french">الفرنسية</option>
+    <option value="science">العلوم</option>
+    <option value="physics">الفيزياء</option>
+    <option value="islamic">التربية الإسلامية</option>
+    <option value="math">الرياضيات</option>
+    <option value="logic">المنطق</option>
+  </select>
+
+  <div id="questions"></div>
+
+  <script>
+    const data = {
+      english: [
+        "What is the capital of England?",
+        "Choose the synonym of 'happy'",
+        "What tense is 'He was playing'?",
+        "Translate: 'I am reading a book.'",
+        "What's the opposite of 'cold'?"
+      ],
+      french: [
+        "Quelle est la capitale de la France ?",
+        "Choisis le synonyme de 'triste'",
+        "Quelle est la traduction de 'chien' ?",
+        "Comment dit-on 'je mange' en anglais ?",
+        "Quelle est la forme négative de 'il est' ?"
+      ],
+      science: [
+        "ما هو الكوكب الأقرب إلى الشمس؟",
+        "مم يتكون الماء؟",
+        "ما هي وحدة قياس الحرارة؟",
+        "هل النبات كائن حي؟",
+        "أين يحدث التنفس الخلوي؟"
+      ],
+      physics: [
+        "ما هو قانون نيوتن الثاني؟",
+        "ما وحدة القوة؟",
+        "ما هو الضوء؟",
+        "هل الصوت ينتقل في الفراغ؟",
+        "ما هي طاقة الوضع؟"
+      ],
+      islamic: [
+        "من هو أول نبي؟",
+        "ما هي أركان الإسلام؟",
+        "ما اسم كتاب المسلمين؟",
+        "كم مرة يجب الصلاة يوميًا؟",
+        "ما معنى التوحيد؟"
+      ],
+      math: [
+        "ما هو ناتج 5 + 3 × 2؟",
+        "ما هو العدد الأولي؟",
+        "كم يساوي نصف الربع؟",
+        "كم زاوية في المثلث؟",
+        "ما هو الجذر التربيعي لـ 64؟"
+      ],
+      logic: [
+        "إذا كان اليوم الاثنين، فبعد يومين سيكون؟",
+        "ما هو الرقم التالي: 2، 4، 8، ؟",
+        "جميع البشر يموتون. خالد بشر. إذًا؟",
+        "هل يمكن أن يكون الشيء مربع ودائرة؟",
+        "إذا كانت الشمس تشرق من الشرق، فأين تغرب؟"
+      ]
+    };
+
+    function showQuestions() {
+      const subject = document.getElementById('subject').value;
+      const questionsDiv = document.getElementById('questions');
+      questionsDiv.innerHTML = '';
+
+      if (!data[subject]) return;
+
+      const questions = data[subject];
+      questions.forEach((q, i) => {
+        const box = document.createElement('div');
+        box.className = 'question-box';
+        box.innerHTML = `<strong>${i + 1}. ${q}</strong><br>
+          <label class="option"><input type="radio" name="q${i}"> خيار 1</label><br>
+          <label class="option"><input type="radio" name="q${i}"> خيار 2</label><br>
+          <label class="option"><input type="radio" name="q${i}"> خيار 3</label><br>
+          <label class="option"><input type="radio" name="q${i}"> خيار 4</label>`;
+        questionsDiv.appendChild(box);
+      });
+    }
+  </script>
+
+</body>
+</html>
